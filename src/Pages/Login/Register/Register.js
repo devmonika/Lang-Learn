@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/Authprovider';
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
 
     const {creatUser, userProfile} = useContext(AuthContext);
@@ -18,6 +19,9 @@ const Register = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
+            toast.success("User Created !", {
+                position: toast.POSITION.TOP_CENTER
+              });
             form.reset();
             updateUserProfile(name, photoUrl);
         })
@@ -74,6 +78,7 @@ const Register = () => {
                 </form>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
